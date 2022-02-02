@@ -1,6 +1,5 @@
 const Discord = require ("discord.js")
-const { run} = require("../../events/client/command")
-
+const { run} = require("../../events/evenements/command")
 
 module.exports =  ({
     name : 'clear',
@@ -33,6 +32,5 @@ module.exports =  ({
             }
         }
     }
-})
-
+});
 

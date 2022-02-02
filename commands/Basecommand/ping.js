@@ -1,6 +1,5 @@
 const Discord = require ("discord.js")
-const { run} = require("../../events/client/command")
-
+const { run} = require("../../events/evenements/command")
 
 module.exports =  ({
     name : 'ping',
@@ -17,7 +16,7 @@ module.exports =  ({
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
                 .setDescription(`Ma latence est de : \`${endTime - startTime}\`ms \n Latence de l'API Discord :\` ${client.ws.ping.toString()}\`ms`)
                 .setColor('#0080ff')
-                .setFooter( "InfinityBot", imagebot).setTimestamp();
+                .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp()
             await msg.edit({content: null, embeds:[embed]});
         })
     }
