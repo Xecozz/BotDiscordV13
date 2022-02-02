@@ -1,3 +1,5 @@
+const Discord = require('discord.js')
+
 module.exports = {
     name : 'ping',
     description : "permet de savoir la latence du bot et de l'api",
