@@ -3,7 +3,7 @@ const {Client, Intents, Collection } = require("discord.js")
 const fs = require ('fs');
 const path = require("path/posix");
 
-class Test extends Client {
+class bot extends Client {
     constructor(options = {intents : new Discord.Intents(32767)}) {
         super(options);
 
@@ -51,4 +51,4 @@ class Test extends Client {
 
 
 
-exports.Test = Test
+exports.bot = bot

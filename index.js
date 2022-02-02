@@ -1,4 +1,3 @@
-const { Client } = require('discord.js')
-const { Test} = require ('./structure/Client/Client')
+const {bot} = require ('./structure/Client/Client')
 
-new Test()
+new bot()
