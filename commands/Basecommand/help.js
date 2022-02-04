@@ -6,7 +6,6 @@ module.exports =  ({
 
     run : async(client, message, args)=>{
             const imagebot = 'https://s2.coinmarketcap.com/static/img/coins/200x200/9603.png';
-            message.delete();
             var avatar = message.author.avatarURL()
             var idauthor = message.author.username
             const embed = new Discord.MessageEmbed()
@@ -47,7 +46,21 @@ module.exports =  ({
                     .setEmoji("📝")
                 )
                 
-                message.channel.send({embeds: [embed], components : [row]})
-    }
+                const msg = await message.channel.send({embeds: [embed], components : [row]})   
+                
+                const embed_moderation = new Discord.MessageEmbed()
+                .setColor("#0080ff")
+                .setTitle("Commandes modération 🛠️ : ")
+                .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
+                .setDescription("en cours de dev...")
+                .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
 
+
+                const verify = (interaction) => interaction.customId === 'moderation';
+                msg.awaitMessageComponent({ verify})
+                     .then(interaction => msg.edit({embeds: [embed_moderation], components : [row]}))
+                     .catch(console.error);
+
+
+        }
     });
