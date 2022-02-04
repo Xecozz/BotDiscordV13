@@ -1,10 +1,9 @@
 const Discord = require ("discord.js")
-const { run} = require("../../events/evenements/command")
 
 module.exports =  ({
     name : 'ping',
     description : "permet de savoir la latence du bot et de l'api",
-    aliases:['p', 'h'],
+    aliases:['p'],
 
     run : async(client, message, args)=>{
         const startTime = Date.now()
@@ -14,7 +13,7 @@ module.exports =  ({
             const endTime = Date.now()
             const embed = new Discord.MessageEmbed()
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .setDescription(`Ma latence est de : \`${endTime - startTime}\`ms \n Latence de l'API Discord :\` ${client.ws.ping.toString()}\`ms`)
+                .setDescription(`Ma latence est de : \`${endTime - startTime}\`ms \n Latence de l'API Discord :\`${client.ws.ping.toString()}\`ms`)
                 .setColor('#0080ff')
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp()
             await msg.edit({content: null, embeds:[embed]});
