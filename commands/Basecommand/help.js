@@ -48,12 +48,13 @@ module.exports =  ({
                     .setEmoji("📝")
                 )
                 
-                const msg =  await message.channel.send({embeds: [embed], components : [row]})  
+                
+                var msg =  await message.channel.send({embeds: [embed], components : [row]})  
                 //accueil
 
-                var filter = (interaction) => interaction.customId === "accueil";
+                var filter = (interaction) => interaction.customId === "accueil" && message.channel.send!= ({embeds: [embed]}) ;
                 msg.awaitMessageComponent({filter})
-                     .then(interaction => msg.edit({embeds: [embed], components : [row]}))
+                     .then(interaction => interaction.update({embeds: [embed], components : [row]}))
                      .catch(console.error);
 
                 //modération
@@ -61,25 +62,53 @@ module.exports =  ({
                 .setColor("#0080ff")
                 .setTitle("Commandes modération 🛠️ : ")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .setDescription("en cours de dev...")
+                .addField("**!clear** + le nombres de messages à supprimer", "permet de supprimer un nombres de messages dans un channel")
+                .addField("**!annonce** + message de l'annonce", "permet au Administrateur de poster une annonce😎")
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
 
                 var filter = (interaction) => interaction.customId === "moderation";
                 msg.awaitMessageComponent({ filter})
-                     .then(interaction => msg.edit({embeds: [embed_moderation], components : [row]}))
+                     .then(interaction => interaction.update({embeds: [embed_moderation], components : [row]}))
                      .catch(console.error);
-                     
+                
+                //jeux
+                const embed_jeux = new Discord.MessageEmbed()
+                .setTitle("Commandes jeux 🕹️: ")
+                .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
+                .setDescription("🛠️en cours de dev...🛠️")
+                .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
+
+                var filter= (interaction) => interaction.customId === "jeux";
+                msg.awaitMessageComponent({filter})
+                    .then(interaction => interaction.update({embeds: [embed_jeux], components : [row]}))
+                    .catch(console.error);
+
+                //devin
+                const embed_devin = new Discord.MessageEmbed()
+                .setTitle("Commandes de Devin 🔮: ")
+                .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
+                .addField("**!avatar**", "découvrir l'avatar de la personnes mentionnée")
+                .addField("**!ping**", "découvrir la latence du bot et de l'api Discord🤖")
+                .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
+
+                var filter= (interaction) => interaction.customId === "status";
+                msg.awaitMessageComponent({filter})
+                    .then(interaction => interaction.update({embeds: [embed_devin], components : [row]}))
+                    .catch(console.error);
+                
                 //utilitaire
                 const embed_utilitaire = new Discord.MessageEmbed()
                 .setTitle("Commandes utilitaire 📝: ")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .setDescription("en cours de dev...")
+                .addField("**!help**", "découvrir les fonctionnalités de InfinityBot")
+                .addField("**!invite**", "inviter son ami sur le serveur😎")
+                .addField("**!bot**", "permet d'ajouter InfinityBot à son serveur🤩")
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
                 
 
                 var filter= (interaction) => interaction.customId === "utile";
                 msg.awaitMessageComponent({filter})
-                    .then(interaction => msg.edit({embeds: [embed_utilitaire], components : [row]}))
+                    .then(interaction => interaction.update({embeds: [embed_utilitaire], components : [row]}))
                     .catch(console.error);
                 
 
