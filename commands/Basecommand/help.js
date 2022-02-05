@@ -3,8 +3,10 @@ const Discord = require("discord.js")
 module.exports =  ({
     name : 'help',
     description : "permet d'appeller la fct help",
+    aliases:['h'],
 
-    run : async(client, message, args)=>{
+    run : async(client, message, interaction, args)=>{
+        message.delete()
             const imagebot = 'https://s2.coinmarketcap.com/static/img/coins/200x200/9603.png';
             var avatar = message.author.avatarURL()
             var idauthor = message.author.username
@@ -46,8 +48,15 @@ module.exports =  ({
                     .setEmoji("📝")
                 )
                 
-                const msg = await message.channel.send({embeds: [embed], components : [row]})   
-                
+                const msg =  await message.channel.send({embeds: [embed], components : [row]})  
+                //accueil
+
+                var filter = (interaction) => interaction.customId === "accueil";
+                msg.awaitMessageComponent({filter})
+                     .then(interaction => msg.edit({embeds: [embed], components : [row]}))
+                     .catch(console.error);
+
+                //modération
                 const embed_moderation = new Discord.MessageEmbed()
                 .setColor("#0080ff")
                 .setTitle("Commandes modération 🛠️ : ")
@@ -55,11 +64,24 @@ module.exports =  ({
                 .setDescription("en cours de dev...")
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
 
-
-                const verify = (interaction) => interaction.customId === 'moderation';
-                msg.awaitMessageComponent({ verify})
+                var filter = (interaction) => interaction.customId === "moderation";
+                msg.awaitMessageComponent({ filter})
                      .then(interaction => msg.edit({embeds: [embed_moderation], components : [row]}))
                      .catch(console.error);
+                     
+                //utilitaire
+                const embed_utilitaire = new Discord.MessageEmbed()
+                .setTitle("Commandes utilitaire 📝: ")
+                .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
+                .setDescription("en cours de dev...")
+                .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
+                
+
+                var filter= (interaction) => interaction.customId === "utile";
+                msg.awaitMessageComponent({filter})
+                    .then(interaction => msg.edit({embeds: [embed_utilitaire], components : [row]}))
+                    .catch(console.error);
+                
 
 
         }
