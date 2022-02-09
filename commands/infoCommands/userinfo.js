@@ -11,16 +11,6 @@ module.exports =  ({
     run : async(client, message, args)=>{
         const Member = message.mentions.members.first() || message.member
         const userinfo = message.mentions.users.first() || message.author
-        let userBot = userinfo.bot
-        if(userinfo.bot === true){
-            userBot = "Oui"
-        }else{
-            userBot = "Non"
-        }
-         let pseudo = Member.nickname
-         if(pseudo === null){
-             pseudo = "Aucun"
-         }
 
         const embed = new Discord.MessageEmbed()
             .setAuthor({name : `Informations sur ${userinfo.username}`, iconURL : Member.displayAvatarURL({dynamic : true})})
@@ -32,25 +22,26 @@ module.exports =  ({
                     name : `${emojis.arrow}Informations de l'utilisateur : `,
                     value : [
                         `${emojis.id}**Id de ${userinfo.username}** : ${Member.id}`,
-                        ` ${emojis.robot}** Bot **: ${userBot}`,
-                        `**Pseudonyme** : ${pseudo}`,
-                        `**Join Discord** : \`${moment(userinfo.createdAt).format('DD/MM/YYYY')}\`\n **➡️** ${moment(userinfo.createdAt).startOf('day').fromNow()}`,
+                        `${emojis.tag}**Tag de ${userinfo.username}** : ${userinfo.tag}`,
+                        ` ${emojis.robot}** Bot **: ${userinfo.bot ? "Oui" : "Non"}`,
+                        `${emojis.nickname}**Pseudonyme** : ${Member.nickname ? Member.nickname : "Aucun"}`,
+                        `${emojis.joined}**Join Discord** : \`${moment(userinfo.createdAt).format('DD/MM/YYYY')}\` `,
                     ].join("\n")
                 },
                 {
                     name : `${emojis.arrow}__Informations du membre :__ `,
                     value : [
-                        `**Join server** : \`${moment(Member.joinedAt).format('DD/MM/YYYY')}\`\n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}`,
+                        `${emojis.joinedMember}**Join server** : \`${moment(Member.joinedAt).format('DD/MM/YYYY')}\``,
                         `${emoji.util.role}** Rôle(s)** : ${Member.roles.cache.map( role => role).join(' ').replace("@everyone", " ")}`
                     ].join("\n")
                 }
 
             )
-            
-            // .addField(`A rejoins Discord le :`, `${moment(Member.joinedAt).format('DD/MM/YYYY')}\n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}`)
-            // .addField(` ${emoji.util.role} Rôle(s)`, `${Member.roles.cache.map( role => role).join(' ').replace("@everyone", " ")}`)
-
 
             message.reply({embeds : [embed]});
     }
 });
+
+
+// ${moment(userinfo.createdAt).startOf('day').fromNow()}
+// \n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}
