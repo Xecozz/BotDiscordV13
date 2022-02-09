@@ -13,7 +13,7 @@ module.exports =  ({
             description = "Aucune"
         }
         const embed = new Discord.MessageEmbed()
-            .setAuthor({name : `Info sur ${guild.name}`, iconURL : guild.iconURL({dynamic : true})})
+            .setAuthor({name : `Informations sur ${guild.name}`, iconURL : guild.iconURL({dynamic : true})})
             .setColor("#0080ff")
             .setThumbnail(guild.iconURL({dynamic : true}))
             .addFields(

@@ -23,7 +23,7 @@ module.exports =  ({
          }
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor({name : `__Info sur ${userinfo.username}__`, iconURL : Member.displayAvatarURL({dynamic : true})})
+            .setAuthor({name : `Informations sur ${userinfo.username}`, iconURL : Member.displayAvatarURL({dynamic : true})})
             .setColor("#0080ff")
             .setThumbnail(Member.displayAvatarURL({dynamic : true}))
             .setFooter({text :`Ask by ${message.author.tag}`,iconURL : message.author.displayAvatarURL({dynamic : true})}).setTimestamp()
