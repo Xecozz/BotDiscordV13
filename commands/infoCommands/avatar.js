@@ -10,8 +10,8 @@ module.exports =  ({
             const Response = new Discord.MessageEmbed()
                 .setColor("#0080ff")
                 .setAuthor({ name :` L'avatar de ${Target.tag} :`})
-                .setImage(Target.displayAvatarURL({dynamic: true}))
-                .setFooter({text :`Demandé par ${message.author.tag}`,iconURL : message.author.displayAvatarURL({dynamic : true})}).setTimestamp();
+                .setImage(Target.displayAvatarURL({ size: 4096 ,dynamic: true}))
+                .setFooter({text :`Ask by ${message.author.tag}`,iconURL : message.author.displayAvatarURL({dynamic : true})}).setTimestamp();
 
                 message.reply({embeds : [Response]});
         
