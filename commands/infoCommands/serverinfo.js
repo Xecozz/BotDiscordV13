@@ -8,48 +8,52 @@ module.exports =  ({
     aliases : ['si'],
     run : async(client, message, args)=>{
         const guild = message.guild
+        let description = guild.description
+        if(description === null){
+            description = "Aucune"
+        }
         const embed = new Discord.MessageEmbed()
             .setAuthor({name : `Info sur ${guild.name}`, iconURL : guild.iconURL({dynamic : true})})
             .setColor("#0080ff")
             .setThumbnail(guild.iconURL({dynamic : true}))
             .addFields(
                 {
-                    name : ` ${emojis.arrow} Informations générales :` ,
+                    name : ` ${emojis.arrow} __Informations générales :__` ,
                     value : [
-                        `Name : ${guild.name}`,
-                        `Créer le : <t:${parseInt(guild.createdTimestamp / 1000)}:R>`,
-                        `Fondateur : <@${guild.ownerId}>`,
-                        `Description : ${guild.description}`,
+                        `**Name :** ${guild.name}`,
+                        `**Créé le :** \`${moment(guild.createdTimestamp).format('DD/MM/YYYY')}\`\n**➡️**${moment(guild.createdTimestamp).startOf('day').fromNow()}`,
+                        `**Fondateur :** <@${guild.ownerId}>`,
+                        `**Description :** ${description}`,
 
                     ].join("\n")
            
                 },
                 {
 
-                    name : ` ${emojis.arrow}Informations Membres : `,
+                    name : ` ${emojis.arrow}__Informations Membres :__ `,
                     value :[
-                        `${emojis.tag}Membres : ${guild.members.cache.filter((m)=> !m.user.bot).size}`,
-                        ` ${emojis.robot}Bots : ${guild.members.cache.filter((m)=> m.user.bot).size}`,
-                        `\n ${emojis.user}Total : ${guild.memberCount}`,
+                        `${emojis.tag}**Membres :** ${guild.members.cache.filter((m)=> !m.user.bot).size}`,
+                        ` ${emojis.robot}**Bots :** ${guild.members.cache.filter((m)=> m.user.bot).size}`,
+                        `\n ${emojis.user}**Total :** ${guild.memberCount}`,
                     ].join("\n")
                      
                 },
                 {
-                    name : ` ${emojis.arrow}Informations Channels :`,
+                    name : ` ${emojis.arrow}__Informations Channels :__`,
                     value : 
                         [
-                            `Texte : ${guild.channels.cache.filter((c)=> c.type === "GUILD_TEXT").size}`,
-                            `Vocal : ${guild.channels.cache.filter((c)=> c.type === "GUILD_VOICE").size}`,
-                            ` Categories : ${guild.channels.cache.filter((c)=> c.type === "GUILD_CATEGORY").size}`,
-                            `\nTotal : ${guild.channels.cache.size} `,
+                            `**Texte :** ${guild.channels.cache.filter((c)=> c.type === "GUILD_TEXT").size}`,
+                            `**Vocal :** ${guild.channels.cache.filter((c)=> c.type === "GUILD_VOICE").size}`,
+                            ` **Categories :** ${guild.channels.cache.filter((c)=> c.type === "GUILD_CATEGORY").size}`,
+                            `\n**Total :** ${guild.channels.cache.size} `,
 
                         ].join("\n")
 
                 },
                 {
-                    name : ` ${emojis.arrow} Roles : `,
+                    name : ` ${emojis.arrow} __Roles :__ `,
                     value : [
-                        `${emojis.role} Roles : ${guild.roles.cache.size}`,
+                        `${emojis.role} **Roles :** ${guild.roles.cache.size}`,
                     ].join("\n")
                 }
             )

@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
-
+const emoji = require('../../emoji/emojis')
+const emojis = emoji.util
 module.exports =  ({
     name : 'help',
     description : "permet d'appeller la fct help",
@@ -12,7 +13,7 @@ module.exports =  ({
             var idauthor = message.author.username
             const embed = new Discord.MessageEmbed()
                 .setColor("#0080ff")
-                .setTitle("Tableau des commandes : ")
+                .setTitle("__Tableau des commandes :__")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
                 .setDescription("Bonjour, je suis infinityBot 😄, \n je suis votre bot personnalisé créé par **Camille**.\n Cliquez sur les differents boutons si dessous pour découvrir mes fonctionnalitées ⬇")
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
@@ -60,10 +61,17 @@ module.exports =  ({
                 //modération
                 const embed_moderation = new Discord.MessageEmbed()
                 .setColor("#0080ff")
-                .setTitle("Commandes modération 🛠️ : ")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .addField("**!clear** + le nombres de messages à supprimer", "permet de supprimer un nombres de messages dans un channel")
-                .addField("**!annonce** + message de l'annonce", "permet au Administrateur de poster une annonce😎")
+                .addFields(
+                    {
+                        name : "**__Commandes modération 🛠️ :__**",
+                        value : [
+                            `${emojis.arrow}**!clear + le nombres de messages à supprimer : **permet de supprimer un nombres de messages dans un channel`,
+                            `${emojis.arrow}**!annonce [beta]+ message de l'annonce :** permet au Administrateur de poster une annonce😎`,
+
+                        ].join('\n')
+                    }
+                )
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
 
                 var filter = (interaction) => interaction.customId === "moderation";
@@ -73,9 +81,14 @@ module.exports =  ({
                 
                 //jeux
                 const embed_jeux = new Discord.MessageEmbed()
-                .setTitle("Commandes jeux 🕹️: ")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .setDescription("🛠️en cours de dev...🛠️")
+                .addFields(
+                    {
+                        name : "**__Commandes jeux 🕹️:__**",
+                        value : [
+                            `🛠️en cours de dev...🛠️`,
+                        ].join('\n')
+                    })
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
 
                 var filter= (interaction) => interaction.customId === "jeux";
@@ -85,10 +98,19 @@ module.exports =  ({
 
                 //devin
                 const embed_devin = new Discord.MessageEmbed()
-                .setTitle("Commandes de Devin 🔮: ")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .addField("**!avatar**", "découvrir l'avatar de la personnes mentionnée")
-                .addField("**!ping**", "découvrir la latence du bot et de l'api Discord🤖")
+                .addFields(
+                    {
+                        name : "**__Commandes de Devin 🔮:__**",
+                        value : [
+                            `${emojis.arrow}**!avatar :** découvrir l'avatar de la personnes mentionnée`,
+                            `${emojis.arrow}**!ping ou !p :** découvrir la latence du bot et de l'api Discord🤖`,
+                            `${emojis.arrow}**!userinfo ou !ui:** découvrir des informations secrète sur le membre mentionné🤫`,
+                            `${emojis.arrow}**!serverinfo ou !si : ** découvrir des informations secrète sur le serveur🤫`,
+                        ].join('\n')
+                    }
+                )
+
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
 
                 var filter= (interaction) => interaction.customId === "status";
@@ -98,11 +120,16 @@ module.exports =  ({
                 
                 //utilitaire
                 const embed_utilitaire = new Discord.MessageEmbed()
-                .setTitle("Commandes utilitaire 📝: ")
                 .setAuthor({name: message.author.username, iconURL: message.author.avatarURL()})
-                .addField("**!help**", "découvrir les fonctionnalités de InfinityBot")
-                .addField("**!invite**", "inviter son ami sur le serveur😎")
-                .addField("**!bot**", "permet d'ajouter InfinityBot à son serveur🤩")
+                .addFields({
+                    name : `**__Commandes utilitaire 📝:__**`,
+                    value : [
+                        `${emojis.arrow}**!help :** les fonctionnalités de InfinityBot🤖`,
+                            `${emojis.arrow}**!invite:** inviter son ami sur le serveur😎`,
+                            `${emojis.arrow}**!bot:** découvrir des informations secrète sur le membre mentionné🤫`,
+                            `${emojis.arrow}**!serverinfo ou !si : **permet d'ajouter InfinityBot à son serveur🤩`,
+                    ].join('\n')
+                })
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
                 
 

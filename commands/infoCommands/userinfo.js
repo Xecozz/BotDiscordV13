@@ -17,13 +17,13 @@ module.exports =  ({
         }else{
             userBot = "Non"
         }
-         let pseudo = userinfo.nickname
+         let pseudo = Member.nickname
          if(pseudo === null){
              pseudo = "Aucun"
          }
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor({name : `Info sur ${userinfo.username}`, iconURL : Member.displayAvatarURL({dynamic : true})})
+            .setAuthor({name : `__Info sur ${userinfo.username}__`, iconURL : Member.displayAvatarURL({dynamic : true})})
             .setColor("#0080ff")
             .setThumbnail(Member.displayAvatarURL({dynamic : true}))
             .setFooter({text :`Ask by ${message.author.tag}`,iconURL : message.author.displayAvatarURL({dynamic : true})}).setTimestamp()
@@ -31,17 +31,17 @@ module.exports =  ({
                 {
                     name : `${emojis.arrow}Informations de l'utilisateur : `,
                     value : [
-                        `${emojis.tag}Tag de ${userinfo.username} :${Member.id}`,
-                        ` ${emojis.robot} Bot : ${userBot}`,
-                        `Pseudonyme : ${Member.nickname}`,
-                        `A rejoins Discord le :${moment(Member.joinedAt).format('DD/MM/YYYY')}\n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}`,
+                        `${emojis.id}**Id de ${userinfo.username}** : ${Member.id}`,
+                        ` ${emojis.robot}** Bot **: ${userBot}`,
+                        `**Pseudonyme** : ${pseudo}`,
+                        `**Join Discord** : \`${moment(userinfo.createdAt).format('DD/MM/YYYY')}\`\n **➡️** ${moment(userinfo.createdAt).startOf('day').fromNow()}`,
                     ].join("\n")
                 },
                 {
-                    name : `${emojis.arrow}Informations du membre : `,
+                    name : `${emojis.arrow}__Informations du membre :__ `,
                     value : [
-                        `A rejoins le serveur le :${moment(Member.joinedAt).format('DD/MM/YYYY')}\n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}`,
-                        `${emoji.util.role} Rôle(s) :${Member.roles.cache.map( role => role).join(' ').replace("@everyone", " ")}`
+                        `**Join server** : \`${moment(Member.joinedAt).format('DD/MM/YYYY')}\`\n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}`,
+                        `${emoji.util.role}** Rôle(s)** : ${Member.roles.cache.map( role => role).join(' ').replace("@everyone", " ")}`
                     ].join("\n")
                 }
 

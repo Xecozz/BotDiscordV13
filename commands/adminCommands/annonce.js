@@ -21,6 +21,7 @@ module.exports =  ({
                 .setFooter({ text: "InfinityBot", iconURL: imagebot}).setTimestamp();
     
                 message.channel.send({embeds: [embed]});
+            
         }
     }
 });
