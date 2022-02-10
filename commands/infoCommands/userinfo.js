@@ -3,6 +3,7 @@ const moment = require('moment');
 const emoji = require('../../emoji/emojis')
 const emojis = emoji.util
 
+
 module.exports =  ({
     name : 'userinfo',
     description : "permet de récuperer les info d'un utilisateur",
@@ -13,13 +14,13 @@ module.exports =  ({
         const userinfo = message.mentions.users.first() || message.author
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor({name : `Informations sur ${userinfo.username}`, iconURL : Member.displayAvatarURL({dynamic : true})})
+            .setTitle(`${emojis.user } Informations sur ${userinfo.username}`)
             .setColor("#0080ff")
             .setThumbnail(Member.displayAvatarURL({dynamic : true}))
             .setFooter({text :`Ask by ${message.author.tag}`,iconURL : message.author.displayAvatarURL({dynamic : true})}).setTimestamp()
             .addFields(
                 {
-                    name : `${emojis.arrow}Informations de l'utilisateur : `,
+                    name : `${emojis.arrow}__Informations de l'utilisateur :__ `,
                     value : [
                         `${emojis.id}**Id de ${userinfo.username}** : ${Member.id}`,
                         `${emojis.tag}**Tag de ${userinfo.username}** : ${userinfo.tag}`,

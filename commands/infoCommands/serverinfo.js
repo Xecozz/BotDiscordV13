@@ -18,7 +18,7 @@ module.exports =  ({
             .setThumbnail(guild.iconURL({dynamic : true}))
             .addFields(
                 {
-                    name : ` ${emojis.arrow} __Informations générales :__` ,
+                    name : `${emojis.arrow} __Informations générales :__` ,
                     value : [
                         `**Name :** ${guild.name}`,
                         `**Créé le :** \`${moment(guild.createdTimestamp).format('DD/MM/YYYY')}\`\n**➡️**${moment(guild.createdTimestamp).startOf('day').fromNow()}`,
@@ -30,7 +30,7 @@ module.exports =  ({
                 },
                 {
 
-                    name : ` ${emojis.arrow}__Informations Membres :__ `,
+                    name : `${emojis.arrow}__Informations Membres :__ `,
                     value :[
                         `${emojis.tag}**Membres :** ${guild.members.cache.filter((m)=> !m.user.bot).size}`,
                         ` ${emojis.robot}**Bots :** ${guild.members.cache.filter((m)=> m.user.bot).size}`,
@@ -51,7 +51,7 @@ module.exports =  ({
 
                 },
                 {
-                    name : ` ${emojis.arrow} __Roles :__ `,
+                    name : `${emojis.arrow} __Roles :__ `,
                     value : [
                         `${emojis.role} **Roles :** ${guild.roles.cache.size}`,
                     ].join("\n")
