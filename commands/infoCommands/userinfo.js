@@ -43,6 +43,3 @@ module.exports =  ({
     }
 });
 
-
-// ${moment(userinfo.createdAt).startOf('day').fromNow()}
-// \n **➡️** ${moment(Member.joinedAt).startOf('day').fromNow()}
