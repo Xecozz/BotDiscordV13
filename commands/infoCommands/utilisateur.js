@@ -10,7 +10,7 @@ module.exports =  ({
     aliases : ['ur'],
 
     run : async(client, message, args)=>{
-        userInfo = client.users.cache.fetch(args[0])
+        userInfo = client.users.cache.fetch(user.id => user.id === args[0])
         console.log(userInfo)
 
         const embed = new Discord.MessageEmbed()
