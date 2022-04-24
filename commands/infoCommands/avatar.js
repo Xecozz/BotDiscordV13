@@ -5,8 +5,8 @@ module.exports = ({
     description: "permet de voir l'avatar de la personne mentionnée",
 
     run: async (client, message, args, commandName) => {
-        const Target = message.mentions.users.first() || message.author;
-
+        const Target = message.mentions.members.first() || message.author;
+        console.log(Target)
         const Response = new Discord.MessageEmbed()
             .setColor("#0080ff")
             .setAuthor({ name: ` L'avatar de ${Target.tag} :` })

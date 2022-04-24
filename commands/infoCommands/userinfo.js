@@ -12,6 +12,7 @@ module.exports = ({
     run: async (client, message, args) => {
         const Member = message.mentions.members.first() || message.member
         const userinfo = message.mentions.users.first() || message.author
+        console.log(userinfo)
 
         const embed = new Discord.MessageEmbed()
             .setTitle(`${emojis.user} Informations sur ${userinfo.username}`)

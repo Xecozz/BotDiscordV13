@@ -9,3 +9,4 @@ module.exports = {
         client.user.setActivity("!help", { type: `WATCHING` });
     }
 }
+

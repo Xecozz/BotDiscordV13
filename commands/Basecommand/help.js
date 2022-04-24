@@ -7,11 +7,10 @@ module.exports = ({
     aliases: ['h'],
 
     run: async (client, message, interaction, args) => {
-        message.delete()
         const imagebot = 'https://s2.coinmarketcap.com/static/img/coins/200x200/9603.png';
-        var avatar = message.author.avatarURL()
-        var idauthor = message.author.username
-
+        const avatar = message.author.avatarURL()
+        const idauthor = message.author.username
+        console.log(message.channel.name)
         let embed = new Discord.MessageEmbed()
             .setColor("#0080ff")
             .setTitle("__Tableau des commandes :__")
@@ -107,8 +106,7 @@ module.exports = ({
         }
 
         // et graçe à ce système il ne te restera plus qu'à faire ceci regarde c'est hyper simple
-
-        const collector = msg.createMessageComponentCollector({});
+        const collector = msg.createMessageComponentCollector();
         // time: 10_500, errors: ['time'] 
         collector.on('collect', async (i) => {
             //condition pas obligatoire c'est juste si tu veux que seule l'auteur de la commande puisse cliquer sur les bouttons
