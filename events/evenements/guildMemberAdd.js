@@ -13,7 +13,7 @@ module.exports = {
             .setThumbnail(avatar)
             .setFooter({ text: "InfinityBot", iconURL: imagebot }).setTimestamp()
             .addField("Nombre de personnes sur le Discord :", `Il y a **${member.guild.memberCount - 1}** personnes sur le Discord :partying_face: `)
-        member.guild.channels.cache.get("935921874653814848").send({ embeds: [embed] });
+        member.guild.channels.cache.get("974258062011547700").send({ embeds: [embed] });
     }
 }
 

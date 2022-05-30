@@ -7,6 +7,7 @@ module.exports = {
   description: "permet de récuperer les info d'un utilisateur",
   aliases: ["si"],
   run: async (client, message, args) => {
+    console.log(message.guild.members.cache.filter(m => m.roles.cache.has('id')).size);
     const guild = message.guild;
     let description = guild.description;
     if (description === null) {

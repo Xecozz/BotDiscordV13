@@ -11,10 +11,10 @@ module.exports = {
       if (args[0]) {
         if (!isNaN(args[0]) && args[0] >= 0 && args[0] <= 99) {
           message.delete();
-          message.channel.bulkDelete(args[0], true);
-          // .catch(err => {
-          //     console.log(err)
-          //     if(err) return message.channel.send("Les messages datent de plus de 14 jours !")}).then(mess => setTimeout(async () => {mess.delete()}, 5000))
+          message.channel.bulkDelete(args[0], true)
+          .catch(err => {
+              console.log(err)
+              if(err) return message.channel.send("Les messages datent de plus de 14 jours !")}).then(mess => setTimeout(async () => {mess.delete()}, 5000))
           const imagebot =
             "https://s2.coinmarketcap.com/static/img/coins/200x200/9603.png";
           id = message.author.avatarURL();

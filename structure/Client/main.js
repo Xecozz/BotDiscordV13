@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require("path/posix");
 
 class bot extends Client {
-    constructor(options = { intents: new Discord.Intents(32767) }) {
+    constructor(options = { intents: new Discord.Intents(4871) }) {
         super(options);
 
         this.config = require('../../config')
